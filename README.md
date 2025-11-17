@@ -50,3 +50,6 @@ Jalankan server API menggunakan Uvicorn dari terminal Anda:
 ```bash
 uvicorn main:app --reload
 ```
+
+Untuk melihat dokumentasi API, ketik alamat berikut di address bar browser web:
+**[http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)**
