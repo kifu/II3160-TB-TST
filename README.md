@@ -13,20 +13,26 @@ Repositori ini berisi pengerjaan Tugas Final Project untuk mata kuliah II3160 - 
 
 ## 📍 Fokus Proyek
 
-Implementasi saat ini berfokus pada **Reservasi Context**, yang telah diidentifikasi sebagai _Core Domain_.
+Implementasi saat ini telah mencapai **Tahap 5 (Implementasi Lanjutan)**. Fokus utama tahap ini adalah melengkapi **Reservasi Context** dengan lapisan keamanan dan autentikasi.
 
-Tujuan tahap ini adalah menerjemahkan Desain Taktis (Aggregates, Value Objects) ke dalam kode Python yang fungsional dan menyediakan API dasar menggunakan FastAPI.
+**Fitur & Aggregates yang Diimplementasikan:**
 
-**Aggregates yang Diimplementasikan:**
-
-1.  **Reservasi**: Mengelola siklus hidup pemesanan, dari `DIPESAN` hingga `SELESAI`.
-2.  **InventarisKamarHarian**: Mengelola ketersediaan kamar secara transaksional untuk tanggal tertentu, melindungi _invariant_ bahwa jumlah pesanan tidak melebihi alokasi.
+1.  **Reservasi (Aggregate)**: Mengelola siklus hidup pemesanan, dari `DIPESAN` hingga `SELESAI`.
+2.  **InventarisKamarHarian (Aggregate)**: Mengelola ketersediaan kamar secara transaksional untuk tanggal tertentu dan melindungi _invariant_ alokasi.
+3.  **Keamanan (Auth)**:
+    -   Implementasi **JWT (JSON Web Token)** untuk autentikasi pengguna.
+    -   Proteksi endpoint sensitif (`POST /reservasi`) menggunakan dependency injection.
+    -   Penggunaan algoritma **Argon2** untuk hashing password yang aman dan modern.
 
 ## 🛠️ Teknologi yang Digunakan
 
-- **Bahasa:** Python 3.10+
-- **Framework API:** FastAPI
-- **Server:** Uvicorn
+-   **Bahasa:** Python 3.10+ (Mendukung hingga Python 3.14)
+-   **Framework API:** FastAPI
+-   **Server:** Uvicorn
+-   **Keamanan:**
+    -   `python-jose` (Generate & Validasi Token)
+    -   `passlib` (Manajemen Password)
+    -   `argon2-cffi` (Algoritma Hashing)
 
 ## 🚀 Cara Menjalankan Proyek
 
@@ -38,9 +44,9 @@ Pastikan Anda memiliki Python 3.10 atau yang lebih baru terinstal di sistem Anda
 
 1.  Clone repositori ini (atau unduh file `main.py` dan `models.py`).
 2.  Buka terminal di folder proyek.
-3.  Instal _library_ yang dibutuhkan:
+3.  Instal _library_ yang dibutuhkan (termasuk dependencies keamanan):
     ```bash
-    pip install fastapi "uvicorn[standard]"
+    pip install fastapi "uvicorn[standard]" python-jose[cryptography] passlib argon2-cffi
     ```
 
 ### 3. Menjalankan Server
